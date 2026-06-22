@@ -63,7 +63,8 @@ function jongToKatakana(jong) {
 }
 
 function voiceIfNeeded(katakana, prevJong) {
-  if (!['ㄴ', 'ㅁ', 'ㅇ'].includes(prevJong)) return katakana;
+  // 비음 받침(ㄴ,ㅁ,ㅇ)과 유음 받침(ㄹ) 뒤에서 평음 초성이 유성음화되는 경향 반영
+  if (!['ㄴ', 'ㅁ', 'ㅇ', 'ㄹ'].includes(prevJong)) return katakana;
   for (const key of VOICING_KEYS) {
     if (katakana.startsWith(key)) {
       return VOICING_MAP[key] + katakana.slice(key.length);
